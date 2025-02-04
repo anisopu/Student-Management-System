@@ -1,20 +1,30 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student CRUD Portal</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
 </head>
 <body>
-    <h1>Student CRUD Project</h1>
-    <a href="{% url 'student_list' %}">Home</a> |
-    <a href="{% url 'add_student' %}">Add Student</a>
-    <hr>
-    {% if messages %}
-        {% for message in messages %}
-            <p style="color: green;">{{ message }}</p>
-        {% endfor %}
-    {% endif %}
-    {% block content %}{% endblock %}
+    <div class="navbar">
+        <a href="{% url 'student_list' %}">Home</a>
+        <a href="{% url 'add_student' %}">Add Student</a>
+    </div>
+
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <p class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+
+    <div class="footer">
+        <p>Student Management System by Ostad</p>
+    </div>
 </body>
 </html>
